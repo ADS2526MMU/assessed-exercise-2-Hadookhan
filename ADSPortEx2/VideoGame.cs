@@ -10,37 +10,51 @@ namespace ADSPortEx2
 
     class VideoGame : IComparable
     {
+
+        private string title;
+        private string developer;
+        private int releaseyear;
+
         public VideoGame()
         {
-            throw new NotImplementedException();
+            Title = null;
+            Developer = null;
+            Releaseyear = 0;
         }
 
         public VideoGame(string title, string developer, int releaseyear)
         {
-            throw new NotImplementedException();
+            Title = title;
+            Developer = developer;
+            Releaseyear = releaseyear;
         }
 
         public string Title
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return Title; }
+            set { Title = title; }
         }
 
         public string Developer
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return Developer; }
+            set { Developer = developer; }
         }
 
         public int Releaseyear
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return Releaseyear; }
+            set { Releaseyear = releaseyear; }
         }
 
         public int CompareTo(object obj)
         {
-            throw new NotImplementedException();
+            if (obj == null)
+            {
+                return 0;
+            }
+            VideoGame other = (VideoGame)obj;
+            return this.CompareTo(other);
         }
 
     }// End of class
