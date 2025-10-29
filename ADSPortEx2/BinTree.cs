@@ -15,7 +15,7 @@ namespace ADSPortEx2
     class BinTree<T> where T : IComparable
     {
 
-        private Node<T> root;
+        protected Node<T> root;
 
         public BinTree()
         {
@@ -37,20 +37,20 @@ namespace ADSPortEx2
         //Functions for EX.2A
         public void InOrder(ref string buffer)
         {
-            DFS(root, "in");
+            DFS(root, "in", ref buffer);
         }
 
         public void PreOrder(ref string buffer)
         {
-            DFS(root, "pre");
+            DFS(root, "pre", ref buffer);
         }
 
         public void PostOrder(ref string buffer)
         {
-            DFS(root, "post");
+            DFS(root, "post", ref buffer);
         }
 
-        private void DFS(Node<T> item, string type)
+        private void DFS(Node<T> item, string type, ref string buffer)
         {
             if (item == null)
             {
@@ -59,19 +59,19 @@ namespace ADSPortEx2
 
             if (type == "in")
             {
-                DFS(item.Left, type);
-                Console.WriteLine(item);
-                DFS(item.Right, type);
+                DFS(item.Left, type, ref buffer);
+                buffer += item.Data.ToString() + ", ";
+                DFS(item.Right, type, ref buffer);
             } else if (type == "pre")
             {
-                Console.WriteLine(item);
-                DFS(item.Left, type);
-                DFS(item.Right, type);
+                buffer += item.Data.ToString() + ",";
+                DFS(item.Left, type, ref buffer);
+                DFS(item.Right, type, ref buffer);
             } else if (type == "post")
             {
-                DFS(item.Left, type);
-                DFS(item.Right, type);
-                Console.WriteLine(item);
+                DFS(item.Left, type, ref buffer);
+                DFS(item.Right, type, ref buffer);
+                buffer += item.Data.ToString() + ",";
             } else
             {
                 throw new Exception("No such DFS method");

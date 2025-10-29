@@ -9,22 +9,22 @@ namespace ADSPortEx2
     class Node<T> where T : IComparable
     {
         // Each Node will have a value and two children
-        public T Item { get; set; }
+        private T data { get; set; }
         public Node<T> Left { get; set; }
         public Node<T> Right { get; set; }
 
         public Node(T item)
         {
             // Node instantiation will declare node with empty children
-            Item = item;
+            data = item;
             Right = null;
             Left = null;
         }
 
         public T Data
         {
-            get { return Data; }
-            set { Data = Item; }
+            get { return data; }
+            set { Data = value; }
         }
 
     } // End of class

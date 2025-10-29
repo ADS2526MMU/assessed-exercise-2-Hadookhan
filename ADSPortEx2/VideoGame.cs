@@ -31,20 +31,20 @@ namespace ADSPortEx2
 
         public string Title
         {
-            get { return Title; }
-            set { Title = title; }
+            get { return title; }
+            set { title = value; }
         }
 
         public string Developer
         {
-            get { return Developer; }
-            set { Developer = developer; }
+            get { return developer; }
+            set { developer = value; }
         }
 
         public int Releaseyear
         {
-            get { return Releaseyear; }
-            set { Releaseyear = releaseyear; }
+            get { return releaseyear; }
+            set { releaseyear = value; }
         }
 
         public int CompareTo(object obj)
@@ -54,7 +54,7 @@ namespace ADSPortEx2
                 return 0;
             }
             VideoGame other = (VideoGame)obj;
-            return this.CompareTo(other);
+            return this.releaseyear.CompareTo(other.Releaseyear);
         }
 
     }// End of class
