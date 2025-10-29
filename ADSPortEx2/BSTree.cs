@@ -46,11 +46,11 @@ namespace ADSPortEx2
 
             if (val < 0)
             {
-                InsertHelper(item, tree.Left);
+                tree.Left = InsertHelper(item, tree.Left);
             }
             else if (val > 0)
             {
-                InsertHelper(item, tree.Right);
+                tree.Right = InsertHelper(item, tree.Right);
             }
             else
             {
@@ -95,7 +95,7 @@ namespace ADSPortEx2
 
         private T FindEarliestGame(Node<T> root)
         {
-            if (root.Left == null || root.Right == null)
+            if (root.Left == null)
             {
                 return root.Data;
             }
