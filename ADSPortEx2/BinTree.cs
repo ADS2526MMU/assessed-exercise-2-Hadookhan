@@ -15,31 +15,67 @@ namespace ADSPortEx2
     class BinTree<T> where T : IComparable
     {
 
+        private Node<T> root;
+
         public BinTree()
         {
-            throw new NotImplementedException();
+            // Empty tree instantiation
+        }
+
+        // My own implemented constructor for user to add item instead of node
+        public BinTree(T item)
+        {
+            root = new Node<T>(item);
         }
 
         public BinTree(Node<T> node)
         {
-            throw new NotImplementedException();
+            root = node;
         }
 
 
         //Functions for EX.2A
         public void InOrder(ref string buffer)
         {
-            throw new NotImplementedException();
+            DFS(root, "in");
         }
 
         public void PreOrder(ref string buffer)
         {
-            throw new NotImplementedException();
+            DFS(root, "pre");
         }
 
         public void PostOrder(ref string buffer)
         {
-            throw new NotImplementedException();
+            DFS(root, "post");
+        }
+
+        private void DFS(Node<T> item, string type)
+        {
+            if (item == null)
+            {
+                return;
+            }
+
+            if (type == "in")
+            {
+                DFS(item.Left, type);
+                Console.WriteLine(item);
+                DFS(item.Right, type);
+            } else if (type == "pre")
+            {
+                Console.WriteLine(item);
+                DFS(item.Left, type);
+                DFS(item.Right, type);
+            } else if (type == "post")
+            {
+                DFS(item.Left, type);
+                DFS(item.Right, type);
+                Console.WriteLine(item);
+            } else
+            {
+                throw new Exception("No such DFS method");
+            }
         }
 
         //Free space, use as necessary to address task requirements... 
