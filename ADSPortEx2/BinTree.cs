@@ -79,6 +79,35 @@ namespace ADSPortEx2
             }
         }
 
+        // BFS just because I wanted to add it
+        public void BFS()
+        {
+            Queue<Node<T>> queue = new Queue<Node<T>>();
+            queue.Enqueue(root);
+
+            int level = 1;
+            while (queue.Count > 0)
+            {
+                int levelSize = queue.Count;
+                Console.WriteLine($"\nLevel {level}: ");
+                for (int i = 0; i < levelSize; i++)
+                {
+                    Node<T> item = queue.Dequeue();
+                    Console.WriteLine(item.Data.ToString());
+                    if (item.Left != null)
+                    {
+                        queue.Enqueue(item.Left);
+                    }
+                    if (item.Right != null)
+                    {
+                        queue.Enqueue(item.Right);
+                    }
+
+                }
+                level++;
+            }
+        }
+
         //Free space, use as necessary to address task requirements... 
 
 

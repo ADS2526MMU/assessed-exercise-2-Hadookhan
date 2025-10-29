@@ -30,11 +30,10 @@ namespace ADSPortEx2
             Tree.InsertItem(game4);
             Tree.InsertItem(game3);
             Tree.InOrder();
-
+            Tree.BFS();
+            Console.Write("\n");
             Console.WriteLine(Tree.EarliestGame().Title);
             Console.WriteLine(Tree.Height());
-
-
 
             Console.ReadLine();
 
