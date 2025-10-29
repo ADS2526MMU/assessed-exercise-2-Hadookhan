@@ -57,5 +57,11 @@ namespace ADSPortEx2
             return this.releaseyear.CompareTo(other.Releaseyear);
         }
 
+        // Overrides the ToString method
+        public override string ToString()
+        {
+            return Title;
+        }
+
     }// End of class
 }

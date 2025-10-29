@@ -29,10 +29,8 @@ namespace ADSPortEx2
             Tree.InsertItem(game2);
             Tree.InsertItem(game4);
             Tree.InsertItem(game3);
+            Tree.InOrder();
 
-            string buffer = "";
-            Tree.InOrder(ref buffer);
-            Console.WriteLine(buffer);
             Console.WriteLine(Tree.EarliestGame().Title);
             Console.WriteLine(Tree.Height());
 
