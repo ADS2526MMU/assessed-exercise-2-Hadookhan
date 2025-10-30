@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace ADSPortEx2
 {
-    //Film class implementation for Assessed Exercise 2
 
     class VideoGame : IComparable
     {

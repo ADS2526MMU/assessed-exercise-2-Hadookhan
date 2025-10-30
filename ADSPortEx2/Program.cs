@@ -76,6 +76,11 @@ namespace ADSPortEx2
                     return;
                 }
                 VideoGame game = new VideoGame(title, developer, release);
+                if (tree.FindNode(game) != null)
+                {
+                    Console.WriteLine("\nGame already exists in tree.");
+                    return;
+                }
                 tree.InsertItem(game);
                 Console.WriteLine($"\nSuccessfully added {title} to tree\n");
             }
@@ -121,7 +126,7 @@ namespace ADSPortEx2
                         tree.PostOrder();
                         break;
                     case 4:
-                        tree.BFS();
+                        tree.LevelOrder();
                         break;
                     case 5:
                         return;
