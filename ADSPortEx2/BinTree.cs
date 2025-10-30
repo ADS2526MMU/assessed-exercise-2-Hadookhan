@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace ADSPortEx2
 {
-    //Binary Tree implementation for Assessed Exercise 2
-
-    //Hints : 
-    //Use lecture materials from Week 4B
-    // and lab sheet 'Lab 5: BinTree and BSTree' to aid with implementation...
 
     class BinTree<T> where T : IComparable
     {
@@ -37,17 +32,31 @@ namespace ADSPortEx2
         //Functions for EX.2A
         public void InOrder()
         {
+            Console.WriteLine("\n------------------------------------");
             DFS(root, "in");
+            Console.WriteLine("\n------------------------------------");
         }
 
         public void PreOrder()
         {
+            Console.WriteLine("\n------------------------------------");
             DFS(root, "pre");
+            Console.WriteLine("\n------------------------------------");
         }
 
         public void PostOrder()
         {
+            Console.WriteLine("\n------------------------------------");
             DFS(root, "post");
+            Console.WriteLine("\n------------------------------------");
+        }
+
+        // Keeping code consistent with similar method names
+        public void LevelOrder()
+        {
+            Console.WriteLine("\n------------------------------------");
+            BFS();
+            Console.WriteLine("\n------------------------------------");
         }
 
         // DFS function for all tree order traversals
@@ -80,7 +89,7 @@ namespace ADSPortEx2
         }
 
         // BFS just because I wanted to add it
-        public void BFS()
+        private void BFS()
         {
             // Edge case incase tree is empty (CANNOT TRAVERSE EMPTY TREE)
             if (root == null)
@@ -112,8 +121,6 @@ namespace ADSPortEx2
                 level++;
             }
         }
-
-        //Free space, use as necessary to address task requirements... 
 
 
 

@@ -6,11 +6,6 @@ using System.Threading.Tasks;
 
 namespace ADSPortEx2
 {
-    //Binary Search Tree implementation for Assessed Exercise 2
-
-    //Hints : 
-    //Use lecture materials from Week 5
-    // and lab sheet 'Lab 5: BinTree and BSTree' to aid with implementation.
 
     class BSTree<T> : BinTree<T> where T : IComparable
     {
@@ -33,7 +28,6 @@ namespace ADSPortEx2
         public void InsertItem(T item)
         {
             root = InsertHelper(item, root);
-            count++;
         }
 
         public int Height()
@@ -70,7 +64,9 @@ namespace ADSPortEx2
 
         public void ListGamesWithYear(T item)
         {
-            // TODO
+            VideoGame game = item as VideoGame;
+            listGamesWithYear(root, game.Releaseyear);
+
         }
 
         // Finds node by using DFS recursion and title comparison value
@@ -81,6 +77,21 @@ namespace ADSPortEx2
         }
 
         // HELPER FUNCTIONS
+        private void listGamesWithYear(Node<T> tree, int year)
+        {
+            if (tree == null)
+            {
+                return;
+            }
+
+            // InOrder traversal but only displaying games with same year as specified
+            listGamesWithYear(tree.Left, year);
+            if ((tree as VideoGame).Releaseyear == year)
+            {
+                Console.WriteLine(tree.Data.ToString());
+            }
+            listGamesWithYear(tree.Right, year);
+        }
         private Node<T> InsertHelper(T item, Node<T> tree)
         {
             if (tree == null)
@@ -143,20 +154,44 @@ namespace ADSPortEx2
                 return 0;
             }
 
-            // returns sum of all nodes on the left and right subtrees
+            // Returns sum of all nodes on the left and right subtrees
             return 1 + FindCount(root.Left) + FindCount(root.Right);
         }
 
         private T FindEarliestGame(Node<T> root)
         {
-            if (root.Left == null)
+            if (root == null)
+                throw new Exception("Tree is currently empty");
+
+            // Root is the initial minimum value
+            T min = root.Data;
+
+            // Recurse to bottom of the tree
+            T leftMin = FindEarliestGame(root.Left);
+            T rightMin = FindEarliestGame(root.Right);
+
+            // Backtrack up tree from left, replacing min value if any games release year has lower value
+            if (leftMin != null)
             {
-                return root.Data;
+                // Type cast generics to VideGame
+                var left = leftMin as VideoGame;
+                var Min = min as VideoGame;
+                if (left != null && Min != null && left.Releaseyear < Min.Releaseyear)
+                    min = leftMin;
             }
 
-            // Furthest Left Node is always earliest game
-            return FindEarliestGame(root.Left);
+            // Backtrack up tree from right, replacing min value if any games release year has lower value
+            if (rightMin != null)
+            {
+                var right = rightMin as VideoGame;
+                var Min = min as VideoGame;
+                if (right != null && Min != null && right.Releaseyear < Min.Releaseyear)
+                    min = rightMin;
+            }
+
+            return min;
         }
+
 
         // I was thinking of using Math.Max, but decided to use my own implementation.
         private int Max(int a, int b)
@@ -167,8 +202,6 @@ namespace ADSPortEx2
             }
             return b;
         }
-
-        //Free space, use as necessary to address task requirements... 
 
 
 
