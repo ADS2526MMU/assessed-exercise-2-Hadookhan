@@ -16,6 +16,7 @@ namespace ADSPortEx2
     {
 
         protected Node<T> root;
+        protected int count;
 
         public BinTree()
         {

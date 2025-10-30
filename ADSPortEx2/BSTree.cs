@@ -33,8 +33,44 @@ namespace ADSPortEx2
         public void InsertItem(T item)
         {
             root = InsertHelper(item, root);
+            count++;
         }
 
+        public int Height()
+        {
+            return FindLongestPath(root);
+        }
+
+        public T EarliestGame()
+        {
+            return FindEarliestGame(root);
+        }
+
+        //Functions for EX.2B
+
+        public int Count()
+        {
+            return count;
+        }
+
+        public void Update(T item)
+        {
+            var node = FindNode(item);
+            if (node == null)
+            {
+                throw new Exception("Item not found in tree");
+            }
+            node.Data = item;
+        }
+
+        // Finds node by using DFS recursion and release year value
+        public Node<T> FindNode(T item)
+        {
+            var node = findItem(root, item);
+            return node;
+        }
+
+        // HELPER FUNCTIONS
         private Node<T> InsertHelper(T item, Node<T> tree)
         {
             if (tree == null)
@@ -54,35 +90,36 @@ namespace ADSPortEx2
             }
             else
             {
-                throw new Exception("Cant have duplicate values");
+                throw new Exception("Cant have duplicate titles");
             }
 
             return tree;
         }
 
-        public int Height()
+        private Node<T> findItem(Node<T> tree, T item)
         {
-            return FindLongestPath(root);
+            if (tree == null)
+            {
+                return null;
+            }
+
+            int val = item.CompareTo(tree.Data);
+
+            if (val < 0)
+            {
+                findItem(tree.Left, item);
+            }
+            else if (val > 0)
+            {
+                findItem(tree.Right, item);
+            }
+            else
+            {
+                return tree;
+            }
+            return null;
         }
 
-        public T EarliestGame()
-        {
-            return FindEarliestGame(root);
-        }
-
-        //Functions for EX.2B
-
-        public int Count()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(T item)
-        {
-            throw new NotImplementedException();
-        }
-
-        // HELPER FUNCTIONS
         private int FindLongestPath(Node<T> root)
         {
             if (root == null)

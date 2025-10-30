@@ -54,13 +54,16 @@ namespace ADSPortEx2
                 return 0;
             }
             VideoGame other = (VideoGame)obj;
-            return this.releaseyear.CompareTo(other.Releaseyear);
+            // This is how the binary search tree will be distributed
+            return Title.ToLower().CompareTo(other.Title.ToLower());
         }
 
         // Overrides the ToString method
         public override string ToString()
         {
-            return Title;
+            return $"\nTitle : {title}\n" +
+                $"Developer : {developer}\n" +
+                $"Release : {releaseyear}\n";
         }
 
     }// End of class
