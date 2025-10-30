@@ -24,7 +24,7 @@ namespace ADSPortEx2
         public T Data
         {
             get { return data; }
-            set { Data = value; }
+            set { data = value; }
         }
 
     } // End of class

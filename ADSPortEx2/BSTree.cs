@@ -107,17 +107,13 @@ namespace ADSPortEx2
 
             if (val < 0)
             {
-                findItem(tree.Left, item);
+                return findItem(tree.Left, item);
             }
             else if (val > 0)
             {
-                findItem(tree.Right, item);
+                return findItem(tree.Right, item);
             }
-            else
-            {
-                return tree;
-            }
-            return null;
+            return tree;
         }
 
         private int FindLongestPath(Node<T> root)

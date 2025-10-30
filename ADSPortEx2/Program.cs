@@ -124,46 +124,28 @@ namespace ADSPortEx2
                 }
             }
 
-            // TODO 
+            
             void updateItem(BSTree<VideoGame> tree)
             {
-                Console.WriteLine("To update a game please enter:\n1. Game Title\n2.Release Year\n");
+                Console.WriteLine("To update a game please enter Game Title:\n");
                 string game = Console.ReadLine().ToLower().Trim();
-                int release;
-                do
-                {
-                    if (int.TryParse(Console.ReadLine().ToLower().Trim(), out release) && release > 1000 && release <= 3000)
-                    {
-                        break;
-                    }
-                    Console.WriteLine("Enter valid year.");
-                } while (true);
 
                 var gameNode = new VideoGame();
                 gameNode.Title = game;
-                gameNode.Releaseyear = release;
-                var found = tree.FindNode(gameNode);
+                Node<VideoGame> found = tree.FindNode(gameNode);
                 if (found == null)
                 {
-                    Console.WriteLine("\nTitle or release year is incorrect\nGoing back...\n"); // Search is only based on release year but this message is more appropriate for the user
+                    Console.WriteLine("\nTitle does not exist\nGoing back...\n");
                     return;
                 }
-                VideoGame foundGame = (VideoGame)found.Data;
+                VideoGame foundGame = found.Data;
 
                 Console.WriteLine($"{foundGame.ToString()}"); // Displays found games data
                 Console.WriteLine("\nGame Found!");
 
                 Console.WriteLine("\nType -1 to go back\n");
-                Console.WriteLine($"Change {foundGame.Title}s title: (leave blank to keep the same) ");
-                var newtitle = Console.ReadLine().ToLower().Trim();
-                if (newtitle == "-1")
-                {
-                    return;
-                } else if (newtitle == "")
-                {
-                    newtitle = foundGame.Title;
-                }
-                    Console.WriteLine($"Change {foundGame.Title}s developer: (leave blank to keep the same) ");
+
+                Console.WriteLine($"Change {foundGame.Title}s developer: (leave blank to keep the same) ");
                 var newdeveloper = Console.ReadLine().ToLower().Trim();
                 if (newdeveloper == "-1")
                 {
@@ -190,7 +172,7 @@ namespace ADSPortEx2
                     Console.WriteLine("Enter valid year.");
                 } while (true);
 
-                gameNode.Title = newtitle;
+                gameNode.Title = foundGame.Title;
                 gameNode.Developer = newdeveloper;
                 gameNode.Releaseyear = newrelease;
                 
