@@ -43,6 +43,11 @@ namespace ADSPortEx2
 
         public T EarliestGame()
         {
+            // Edge case incase tree is empty (CANNOT TRAVERSE EMPTY TREE)
+            if (root == null)
+            {
+                throw new Exception("Tree is currently empty");
+            }
             return FindEarliestGame(root);
         }
 
@@ -50,7 +55,7 @@ namespace ADSPortEx2
 
         public int Count()
         {
-            return count;
+            return FindCount(root);
         }
 
         public void Update(T item)
@@ -63,7 +68,12 @@ namespace ADSPortEx2
             node.Data = item;
         }
 
-        // Finds node by using DFS recursion and release year value
+        public void ListGamesWithYear(T item)
+        {
+            // TODO
+        }
+
+        // Finds node by using DFS recursion and title comparison value
         public Node<T> FindNode(T item)
         {
             var node = findItem(root, item);
@@ -124,6 +134,17 @@ namespace ADSPortEx2
             }
 
             return 1 + Max(FindLongestPath(root.Left), FindLongestPath(root.Right));
+        }
+
+        private int FindCount(Node<T> root)
+        {
+            if (root == null)
+            {
+                return 0;
+            }
+
+            // returns sum of all nodes on the left and right subtrees
+            return 1 + FindCount(root.Left) + FindCount(root.Right);
         }
 
         private T FindEarliestGame(Node<T> root)

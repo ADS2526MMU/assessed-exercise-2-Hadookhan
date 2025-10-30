@@ -18,7 +18,7 @@ namespace ADSPortEx2
             int menu()
             {
                 Console.WriteLine(
-                "Select an option\n" +
+                "\nSelect an option:\n" +
                 "1. Add item to tree\n" +
                 "2. Delete item from tree\n" +
                 "3. Update item in tree\n" +
@@ -84,7 +84,7 @@ namespace ADSPortEx2
             void displayItems(BSTree<VideoGame> tree)
             {
                 Console.WriteLine(
-                "Select an option\n" +
+                "\nSelect an option:\n" +
                 "1. Pre-order\n" +
                 "2. In-order\n" +
                 "3. Post-order\n" +
@@ -101,6 +101,13 @@ namespace ADSPortEx2
                     }
                     Console.WriteLine("Enter a valid command.");
                 } while (true);
+
+                // Edge case incase tree is empty (CANNOT TRAVERSE EMPTY TREE), still permits going back and invalid inputs
+                if (tree.Count() == 0 && cmd < 5)
+                {
+                    Console.WriteLine("\nTree is currently empty!");
+                    return;
+                }
 
                 switch (cmd)
                 {
@@ -201,14 +208,24 @@ namespace ADSPortEx2
                         displayItems(BST);
                         break;
                     case 5:
+                        // Edge case incase tree is empty (CANNOT TRAVERSE EMPTY TREE)
+                        if (BST.Count() == 0)
+                        {
+                            Console.WriteLine("\nTree is currently empty!");
+                            break;
+                        }
                         var game = BST.EarliestGame();
                         Console.WriteLine($"Earliest game: {game.Title} by {game.Developer}\n" +
                                           $"Release - {game.Releaseyear}\n");
                         break;
                     case 6:
-                        throw new NotImplementedException();
+                        var height = BST.Height();
+                        Console.WriteLine($"\nHeight of the tree: {height}");
+                        break;
                     case 7:
-                        throw new NotImplementedException();
+                        var count = BST.Count();
+                        Console.WriteLine($"\nTotal Items in tree: {count}");
+                        break;
                     case 8:
                         return;
                     default:

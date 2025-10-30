@@ -16,7 +16,6 @@ namespace ADSPortEx2
     {
 
         protected Node<T> root;
-        protected int count;
 
         public BinTree()
         {
@@ -83,6 +82,11 @@ namespace ADSPortEx2
         // BFS just because I wanted to add it
         public void BFS()
         {
+            // Edge case incase tree is empty (CANNOT TRAVERSE EMPTY TREE)
+            if (root == null)
+            {
+                throw new Exception("Tree is currently empty");
+            }
             Queue<Node<T>> queue = new Queue<Node<T>>();
             queue.Enqueue(root);
 
