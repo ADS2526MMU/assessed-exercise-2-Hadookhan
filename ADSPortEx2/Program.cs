@@ -26,13 +26,14 @@ namespace ADSPortEx2
                 "5. Display earliest released game\n" +
                 "6. Display tree height\n" +
                 "7. Display item count\n" +
-                "8. Exit Program\n" +
+                "8. Display items from a certain year\n" +
+                "9. Exit Program\n" +
                 ">>> "
                 );
                 int cmd;
                 do
                 {
-                    if (int.TryParse(Console.ReadLine(), out cmd) && cmd > 0 && cmd <= 8)
+                    if (int.TryParse(Console.ReadLine(), out cmd) && cmd > 0 && cmd <= 9)
                     {
                         break;
                     }
@@ -192,6 +193,28 @@ namespace ADSPortEx2
                 Console.WriteLine("\nSuccessfully Updated Game!\n");
             }
 
+            void ItemsFromYear(BSTree<VideoGame> tree)
+            {
+                Console.WriteLine("\nEnter Year: (-1 to go back) ");
+                int year;
+
+                do
+                {
+                    if (int.TryParse(Console.ReadLine(), out year) && year > 1000 && year <= 3000)
+                    {
+                        break;
+                    }
+                    else if (year == -1)
+                    {
+                        return;
+                    }
+                    Console.WriteLine("\nEnter valid year.");
+                } while (true);
+
+                tree.ListGamesWithYear(year);
+
+            }
+
             var BST = new BSTree<VideoGame>();
 
             while (true)
@@ -232,6 +255,9 @@ namespace ADSPortEx2
                         Console.WriteLine($"\nTotal Items in tree: {count}");
                         break;
                     case 8:
+                        ItemsFromYear(BST);
+                        break;
+                    case 9:
                         return;
                     default:
                         Console.WriteLine("Invalid input. Please try again.");
