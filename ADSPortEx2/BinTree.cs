@@ -34,21 +34,21 @@ namespace ADSPortEx2
         {
             Console.WriteLine("\n------------------------------------");
             DFS(root, "in");
-            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine("------------------------------------");
         }
 
         public void PreOrder()
         {
             Console.WriteLine("\n------------------------------------");
             DFS(root, "pre");
-            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine("------------------------------------");
         }
 
         public void PostOrder()
         {
             Console.WriteLine("\n------------------------------------");
             DFS(root, "post");
-            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine("------------------------------------");
         }
 
         // Keeping code consistent with similar method names
@@ -56,7 +56,7 @@ namespace ADSPortEx2
         {
             Console.WriteLine("\n------------------------------------");
             BFS();
-            Console.WriteLine("\n------------------------------------");
+            Console.WriteLine("------------------------------------");
         }
 
         // DFS function for all tree order traversals

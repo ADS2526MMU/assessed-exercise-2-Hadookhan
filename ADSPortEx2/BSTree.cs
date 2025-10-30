@@ -62,10 +62,9 @@ namespace ADSPortEx2
             node.Data = item;
         }
 
-        public void ListGamesWithYear(T item)
+        public void ListGamesWithYear(int year)
         {
-            VideoGame game = item as VideoGame;
-            listGamesWithYear(root, game.Releaseyear);
+            listGamesWithYear(root, year);
 
         }
 
@@ -86,7 +85,7 @@ namespace ADSPortEx2
 
             // InOrder traversal but only displaying games with same year as specified
             listGamesWithYear(tree.Left, year);
-            if ((tree as VideoGame).Releaseyear == year)
+            if ((tree.Data as VideoGame).Releaseyear == year)
             {
                 Console.WriteLine(tree.Data.ToString());
             }
@@ -161,7 +160,7 @@ namespace ADSPortEx2
         private T FindEarliestGame(Node<T> root)
         {
             if (root == null)
-                throw new Exception("Tree is currently empty");
+                return default; // return null for generic type
 
             // Root is the initial minimum value
             T min = root.Data;
