@@ -12,6 +12,9 @@ namespace ADSPortEx2
     {
         static void Main(string[] args)
         {
+            string buffer = "";
+            var BST = new BSTree<VideoGame>();
+
             // HELPER FUNCTIONS ---------------------------------------------------------------------------------------------------------------------------
 
             // Display menu options
@@ -118,16 +121,16 @@ namespace ADSPortEx2
                 switch (cmd)
                 {
                     case 1:
-                        tree.PreOrder();
+                        tree.PreOrder(ref buffer);
                         break;
                     case 2:
-                        tree.InOrder();
+                        tree.InOrder(ref buffer);
                         break;
                     case 3:
-                        tree.PostOrder();
+                        tree.PostOrder(ref buffer);
                         break;
                     case 4:
-                        tree.LevelOrder();
+                        tree.LevelOrder(ref buffer);
                         break;
                     case 5:
                         return;
@@ -214,8 +217,6 @@ namespace ADSPortEx2
                 tree.ListGamesWithYear(year);
 
             }
-
-            var BST = new BSTree<VideoGame>();
 
             while (true)
             {

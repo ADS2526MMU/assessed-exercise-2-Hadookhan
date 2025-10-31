@@ -30,37 +30,37 @@ namespace ADSPortEx2
 
 
         //Functions for EX.2A
-        public void InOrder()
+        public void InOrder(ref string buffer)
         {
             Console.WriteLine("\n------------------------------------");
-            DFS(root, "in");
+            DFS(root, "in", ref buffer);
             Console.WriteLine("------------------------------------");
         }
 
-        public void PreOrder()
+        public void PreOrder(ref string buffer)
         {
             Console.WriteLine("\n------------------------------------");
-            DFS(root, "pre");
+            DFS(root, "pre", ref buffer);
             Console.WriteLine("------------------------------------");
         }
 
-        public void PostOrder()
+        public void PostOrder(ref string buffer)
         {
             Console.WriteLine("\n------------------------------------");
-            DFS(root, "post");
+            DFS(root, "post", ref buffer);
             Console.WriteLine("------------------------------------");
         }
 
         // Keeping code consistent with similar method names
-        public void LevelOrder()
+        public void LevelOrder(ref string buffer)
         {
             Console.WriteLine("\n------------------------------------");
-            BFS();
+            BFS(ref buffer);
             Console.WriteLine("------------------------------------");
         }
 
         // DFS function for all tree order traversals
-        private void DFS(Node<T> item, string type)
+        private void DFS(Node<T> item, string type, ref string buffer)
         {
             if (item == null)
             {
@@ -69,19 +69,22 @@ namespace ADSPortEx2
 
             if (type == "in")
             {
-                DFS(item.Left, type);
-                Console.WriteLine(item.Data.ToString());
-                DFS(item.Right, type);
+                DFS(item.Left, type, ref buffer);
+                Console.WriteLine(item.Data.ToString()); // To Console
+                buffer += item.Data.ToString(); // To Buffer string
+                DFS(item.Right, type, ref buffer);
             } else if (type == "pre")
             {
                 Console.WriteLine(item.Data.ToString());
-                DFS(item.Left, type);
-                DFS(item.Right, type);
+                buffer += item.Data.ToString();
+                DFS(item.Left, type, ref buffer);
+                DFS(item.Right, type, ref buffer);
             } else if (type == "post")
             {
-                DFS(item.Left, type);
-                DFS(item.Right, type);
+                DFS(item.Left, type, ref buffer);
+                DFS(item.Right, type, ref buffer);
                 Console.WriteLine(item.Data.ToString());
+                buffer += item.Data.ToString();
             } else
             {
                 throw new Exception("No such DFS method");
@@ -89,7 +92,7 @@ namespace ADSPortEx2
         }
 
         // BFS just because I wanted to add it
-        private void BFS()
+        private void BFS(ref string buffer)
         {
             // Edge case incase tree is empty (CANNOT TRAVERSE EMPTY TREE)
             if (root == null)
@@ -108,6 +111,7 @@ namespace ADSPortEx2
                 {
                     Node<T> item = queue.Dequeue();
                     Console.WriteLine(item.Data.ToString());
+                    buffer += item.Data.ToString();
                     if (item.Left != null)
                     {
                         queue.Enqueue(item.Left);
